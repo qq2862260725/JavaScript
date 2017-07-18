@@ -96,3 +96,49 @@ Down(3)
 }
 a //1
 ```
+### 6.条件语句
+#### 6.1 if结构
+```js
+if(expression) 
+  statement;
+// or
+if(expression) statement;
+// or 
+if(expression) {
+ statement;
+}
+```
+#### 6.2if...else结构
+```js
+if(m === 3){
+ //then
+} else {
+  //else
+}
+
+if(m == 1){
+ //...
+} else if(m == 2){
+ //..
+} else if(m == 3){
+ //..
+} else {
+ //..
+}
+```
+- else总是跟随离自己最近的那个if语句：
+```js
+  var m = 1;
+  var n = 2;
+  if(m !== 1)
+  if(n === 2) console.log('hello');
+  else console.log('world');
+  //相当于
+  if(m !== 1){
+     if(n === 2){
+       console.log('hello');
+     }else {
+       consloe.log('world');
+     }
+  }
+```
