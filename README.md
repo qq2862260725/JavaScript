@@ -274,7 +274,7 @@ label:
   // i=1, j=0
   
   top: 
-  for(var i=0;i<3:i++){
+  for(var i=0;i<3;i++){
     for(var j=0;j<3;j++){
       if(i === 1 && j ===1) continue top;
       console.log('i=' +i + ' , j=' + j);
@@ -287,7 +287,74 @@ label:
   // i=2, j=0
   // i=2, j=1
   // i=2, j=2
+  top: 
+  for(var i=0;i<3;i++){
+    for(var j=0;j<3;j++){
+      if(i === 1 && j ===1) continue;
+      console.log('i=' +i + ' , j=' + j);
+    }
+  }//如果上面continue后面没有top标签，那么下一轮的内循环
+  // i=0, j=0
+  // i=0, j=1
+  // i=0, j=2
+  // i=1, j=0
+  // i=1, j=2
+  // i=2, j=0
+  // i=2, j=1
+  // i=2, j=2
 ```
+
+## 数据类型
+### 1.概述
+- JavaScrip的每一个值，都有自己的数据类型，分别为：数值（number）、字符串（string）、布尔值（boolean）、undefined、null、对象（object）；
+- 通常我们将数值、字符串、布尔值称为原始类型，将对象称为合成类型，undefined和null为特殊值；
+- 对象又可以分为三个子类型：狭义的对象（object）、数组（array）、函数（function）；
+### 2.typeof运算符
+- JavaScript有三种方法确定一个值属于什么类型：typeof运算符、instanceof运算符、object.prototype.toString方法；
+```js
+  typeof 123 //"number"
+  typeof '123' //"string"
+  typeof true //"boolean"
+  function f(){}
+  typeof f //"function"
+  typeof undefined //"undefined"
+  typeof window //"object"
+  typeof {} // "object"
+  typeof [] // "object"
+  typeof null //"object"
+  ```
+  - 数组是特殊的对象，null也属于object（历史遗留问题），null本质上是类似于undefined的特殊值；
+  - 区分数组（array）和对象（object）；
+  ```js
+    var o = {};
+    var a = [];
+    o instanceof Array //false
+    a instanceof Array //true
+  ```
+  ### 3.null和undefined
+  #### 3.1概述
+  - null和undefined都表示‘没有’，含义非常相似
+  - 在if语句中，null和undefined都会被自动转化为false，相等运算符（==），两者相等
+  ```js 
+   null == undefined; //true
+   Number(null); //0
+   5 + null; //5
+   Number(null); //NaN
+   5 + null; //NaN
+ ```
+ - null表示“无”的对象，转化为数字为0；undefined表示一个“无”的原始值，转化为数字是为NaN；
+ #### 3.1用法和含义
+ - null表示空值，调用函数时，摸个参数未设置任何值，此时传入的值为null；
+ - undefined表示未定义；
+ ### 4.布尔值
+ - 布尔值分为真（true）假（false）两个状态；
+ - 下列运算符会返回布尔值：
+ >两元运算符：&&（And），||（Or)<br>
+ >前置逻辑运算符：！（Not）<br>
+ >相等运算符： === ，== ，！==， ！=
+ >比较运算符:>, >=, <, <=<br>
+ - 如果JavaScript预期某个位置应该为布尔值，会将该位置上的值自动转化为布尔值，undefined，null，false，0，NaN，"",''会被转化为false，其他值都视为true；
+  
 
 
 
