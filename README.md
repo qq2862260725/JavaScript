@@ -142,3 +142,164 @@ if(m == 1){
      }
   }
 ```
+#### 6.3 switch结构
+- 多个if...lese一起用的时候，可以使用更方便的switch结构；
+```js
+switch(fruit){
+   case: 'apple':
+     //...
+     break;
+   case: 'cherry':
+     //...
+     break;
+   default:
+     //...
+}
+// 每个case代码块内部的break语句都不能少，否则会据需执行下一个case块，不会跳出switch语句
+```
+- switch语句部分和case语句部分可以使用表达式
+```js
+switch(2+2){
+  case 1+3:
+    f();
+    break;
+  default:
+     neverhappens();//永远不会执行到
+}
+```
+- switch语句后面的表达式与case后面的表达式进行比较运算时，采用的是严格相等运算符（===），比较时不会发生类型转换;
+```js
+  var x = 1;
+  switch(x){
+    case true:
+      console.log('x的类型发生了转化');
+      break;
+    default:
+       console.log('x没有发生类型转化');
+  }
+```
+#### 6.4三元运算符?:
+- 三元运算符结构:(condition)?one:two,如果condition为true，返回one，否则返回two；
+
+### 7.循环语句
+#### 7.1while循环
+- while语句包括一个条件语句和待执行代码块
+```js
+  while(expression) 
+    statement;
+  //or
+  while(expression) statement;
+  //or 
+  while(expression){
+    statement;
+  }
+```
+#### 7.2for循环
+- for语句是循环的另一种形式：可以指定起点、终点、终止条件；
+```js
+  for(initialize;test;increment)
+    statement;
+    //or
+  for(initialize;test;increment){
+    statement;
+  }
+```
+- 初始表达式（initialize）：确定循环的初始值，只在循环开始时执行一次；
+- 测试表达式（test）：检查循环条件，只要为真进行后续操作；
+- 递增表达式（increment）：完成后续操作，返回上一步，再次进行检查循环条件；
+##### demo:
+```js
+  var x = 3;
+  for(var i=0;i<x;i++){
+    console.log(i)
+  }
+  //0
+  //1
+  //2
+```
+- for语句的三个部分（initailize,test,increment）,可以省略任意其一，也可也省略全部；
+```js 
+  for(;;){
+    console.log('Hello World !');
+  }//此循环是个无限循环
+```
+#### 7.3do...while循环
+- do...while循环与while循环类似，区别是：do...while循环先运行一次，然后判断循环条件；
+```js
+  do
+    statement
+  while(expression);
+  //or
+  do{
+    statement
+  } while(expression);
+```
+#### 7.4break和continue语句
+- break和continue语句都有跳转作用，可以让代码不按既有顺序执行；
+- break用于跳出代码模块或循环；
+```js
+  var i = 0;
+  while(i<100){
+    console.log('i当前为：'+ i)；
+    if（i === 10）break;
+  }
+```
+- continue语句用于立即终止本轮循环，返回循环结构的头部，进行下一轮循环；
+```js
+  var i = 0;
+  while(i < 20){
+    i++;
+    if(i%2 === 0) continue;
+    console.log('i当前为：' + i);
+  }
+```
+#### 7.5标签label
+-label的格式如下：
+```js
+label: 
+  statement
+```
+- label通常与break语句和continue语句配合使用，跳出待定的循环：
+```js
+  top:
+  for(var i=0;i<3;i++){
+    for(var j=0;j<3;j++){
+      if(i === 1 && j ===1) break top;
+      console.log('i=' +i + ' , j=' + j);
+    }
+  }
+  // i=0, j=0
+  // i=0, j=1
+  // i=0, j=2
+  // i=1, j=0
+  
+  top: 
+  for(var i=0;i<3:i++){
+    for(var j=0;j<3;j++){
+      if(i === 1 && j ===1) continue top;
+      console.log('i=' +i + ' , j=' + j);
+    }
+  }
+  // i=0, j=0
+  // i=0, j=1
+  // i=0, j=2
+  // i=1, j=0
+  // i=2, j=0
+  // i=2, j=1
+  // i=2, j=2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
