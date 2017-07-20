@@ -479,6 +479,141 @@ label:
   isNaN([123]) //false
   isNaN(['123']) //false
 ```
+#### 4.3Infinity
+- Infinity表示‘无穷’，表示整的数值太大，附属数值太小；
+- 非0数值除以0得到Infinity；
+```js
+Math.pow(2,Math.pow(2,100)); //Infinity
+0/0 //NaN
+1/0 //Infinity
+```
+- Infinity有正负之分
+- Infinity与NaN比较返回false
+- Infinity与null运算时，null自动转化为0，与undefined计算时返回NaN
+- isFinity返回一个布尔值，检查某个值是否为正常数值，而不是Infinity
+```js
+  isFinity(1) //true
+  isFinity(Infinity) //false
+```
+### 5.与数值相关的全局方法
+#### 5.1parseInt()
+- parseInt()用于将字符串转化为数字
+```js
+  parseInt('123') //123
+  parseInt('      123') //123
+  //如果数值前有空格，空格会自动去除
+```
+- parseInt的参数不是字符转会先将参数转化为字符串，然后进行转换
+```js
+  parseInt(1.23) //1
+  parseInt('1.23') //1
+```
+- 字符串转化为正数是时，试将字符逐个转换，如果遇到不能转化为数字的字符，停止转化余下字符;如果第一个字符不能转换为数字，返回NaN
+```js
+  parseInt('8a') //8
+  parseInt('8a55') //8
+  parseInt（'a123'） //NaN
+```
+- 如果字符串以0x或0X开头则进行十六进制进行解析，以0开头进行十进制解析，对于自动转换为科学计数法的数字，parseInt会将科学技术法作为字符串
+```js
+  parseInt('0x10') //16
+  parseInt('011') //11
+  parseInt(1000000000000000000000.5) // 1
+  //等于
+  parseInt（'1e+21'） //1
+```
+- parseInt()可以接受第二个参数（2-36），第二个参数用来表示解析值的进制，默认情况下返回的是十进制，如果第二个参数是0，null，undefined，直接忽略第二个参数
+```js
+  parseInt('1000',2) //8
+  parseInt('10',0) //10
+  parseInt('10',null) //10
+  parseInt('10',undefined) //10
+```
+- 如果第一个参数不是字符串，先将其转换为字符串，同时也会出现一些意外的情况
+```js
+  parseInt(0x11,36) //43
+  /*相当于*/
+  parseInt(String(ox11),36);
+  parseInt('17',36)
+```
+#### 5.2parseFloat()
+- parseFloat将字符串转化为浮点数,如果字符串符合科学计数法，则进行相应转化
+```js
+  parseFloat('3.14') //3.14
+  parseFloat('314e-2') //3.14
+```
+- 如果字符串中含有不能转化为浮点数的字符，不在进行下一步转换
+```js
+  parseFloat('3.14more non-digit characters') // 3.14
+```
+- parseFloat会自动过滤字符串前导空格
+```js
+  parseFloat('\t\v\r12.34\n') //12.34
+```
+- 如果参数不是字符串，或者字符串的第一个字符不能转换为浮点数，则返回NaN
+```js
+  parseFloat([]) //NaN
+  parseFloat(''FF2) //NaN
+  ParseFloat('') //NaN
+```
+## 字符串
+### 1.概述
+- 字符串是零个或多个排在一起的字符，放在单引号或双引号之中
+- 单引号字符内部可以使用双引号，双引号字符内部可以使用单引号
+- 如果想在单引号和双引号内部使用相同的符号，必须在内部的引号内加上反斜杠用来转义
+```js
+ 'Did she say \'Hello\'?'
+ "Did she say \"Hello\"?"
+```
+- 字符串默认智能在一行，在多行会报错,如果分成多行必须在每一行尾部使用反斜杠,或者使用加好链接
+```js
+  'a
+b
+c' //SyntaxError: Unexpected token ILLEGAL
+  'a\
+b\
+c' //"abc"
+ 'a' +
+ 'b' +
+ 'c' //"abc"
+```
+- 反斜杠（‘\’）在字符中有特殊的意义
+```js
+  console.log('1\n2')
+  //1
+  //2
+```
+#### 字符串与数组
+- 字符串可以被视为字符数组，可以利用数组的方括号来运算
+- 如果方括号里面的数字超过了字符串的长度，或根本不是数字，返回undefined
+```js
+  var s = 'Hello';
+  s[0] //"H"
+  'Hello'[1] //"e"
+  s[5] //undefined
+  s[a] //undefined
+```
+- 字符串与数组的相似性仅仅是上面的，无法改变自妇产之中的字符
+```js
+  var s = 'Hello';
+  delete s[0] //"Hello"
+  s[1] = 'a' //'Hello'
+```
+- 字符串无法直接使用数组的方法，必须通过call方法来简介使用
+```js
+  var s = 'Hello';
+  s.join(' ') //TypeError: s.join is not a function
+  Array.protitype.join.call(s,' ') //'H e l l o'
+```
+#### length属性
+- length属性返回字符串长度，该属性无法改变
+```js
+  var s = 'Hello'
+  s.length //5
+  s.length = 3;
+  s.length //5
+```
+
 
 
   
