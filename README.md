@@ -613,8 +613,50 @@ c' //"abc"
   s.length = 3;
   s.length //5
 ```
+## 对象
+### 1.概述
+#### 1.1生成方法
+- 对象是一种无序数据集合，由若干个“键值对”构成
+```js
+  var o = {
+    p: 'Hello World',
+    q: 'Hi'
+  };
+```
+- 生成对象的三种方法
+```js
+  var o1 = {};
+  var o2 = new Object();
+  var o3 = Object.create(Object.prototype);
+```
+#### 1.2键名
+- 对象所有的键名都是字符串，加不加引号都行
+```js
+  var o = {
+   'p': 'Hello World !'
+  }
+```
+- 如果键名是数值，会被自动转换为字符串
+```js
+ var o ={
+   1: 'a',
+   3.2: 'b',
+   1e2: true,
+   1e-2: true,
+   .234: true,
+   0xFF: true
+ };
 
-
+ o
+ // Object {
+ //   1: "a",
+ //   3.2: "b",
+ //   100: true,
+ //   0.01: true,
+ //   0.234: true,
+ //   255: true
+ // }
+```
 
   
 
