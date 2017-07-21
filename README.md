@@ -743,6 +743,69 @@ c' //"abc"
    o[0.7] //"Hello"
 ```
 #### 2.2检查变量是否声明
+- 如果读取一个不存在的键，会返回undefined，利用这一点可以来检查一个全局是否被声明
+```js
+   /*检查变量a是否被声明*/
+   if(a) {...} //报错
+   if（window.a）{...} //报错
+   if (window['a']) {...} //报错
+```
+- 上面后两种写法之所以不会报错，是因为全局变量都是window的属性，window.a就是读取window对象的a属性，后两种也会有漏洞，如果a的是一个空的字符串或对应的布尔值为false时，则无法起到检查变量是否声明的作用，正确的写法如下
+```js
+  if('a' in window){
+    //...
+  }else {
+    //...
+  }
+```
+#### 2.3属性的赋值
+- 点运算符和方括号，不仅可以用来读取数值，还可以用来赋值
+```js
+  var o = {};
+  o.p = 1;
+  o.p // 1
+  o['p'] = 2;
+  o.p //2
+```
+- JavaScript允许属性的"后绑定"，也就是说可以在任何时候增加新属性
+```js
+  var o = {p:1};
+  /*等价于*/
+  var o = {};
+  o.p = 1;
+```
+#### 2.4查看所有的属性
+- JavaScript使用Object.keys检查对象本省的所有属性
+```js
+  var o = {
+    key1 : 1,
+    key2 : 2
+  }
+  Object.keys(o);
+  //['key1',['key2']]
+```
+#### 2.5delete命令
+- delete用于删除对象的属性，删除成功后返回true
+```js
+  var o = {p:1};
+  Object.keys(0)
+  //['p']
+  delete o.p;
+  o.p //undifined
+  Object.keys(0)
+  //[]
+```
+- 删除一个不存在的属性，delete不会报错，而是返回true
+```js
+  var o = {};
+  delete o.p  //true
+```
+- 有一种情况，delete命令会返回false，那就是该属性存在且不得删除
+```js
+  var o = Object.defineProperty({},'p'{
+    
+  })
+```
   
 
 
