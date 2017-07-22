@@ -803,11 +803,75 @@ c' //"abc"
 - 有一种情况，delete命令会返回false，那就是该属性存在且不得删除
 ```js
   var o = Object.defineProperty({},'p'{
-    
-  })
+      value: 123,
+      configurable: false
+  });
+  o.p //123
+  delete o.p //false
 ```
+- delete只能删除对象本身的属性，无法删除继承属性
+#### 2.6in运算符
+- in运算符用于检查对象是否包含某个属性
+```js
+  var o = {
+    p: 1
+  }
+  'p' in o //true
+```
+-在JavaScript中，所有全局变量都是顶层对象window的属性，可以利用in运算符来判断一个全局变量是否存在
+```js
+  if('x' in window) {
+    console.log('该对象存在')；
+  }
+```
+- in运算符不能识别对象继承的属性,但对继承实行返回true
+```js
+  var o = new Object();
+  o.hasOwnProperty('toString'); //false
+  'toString' in o //true
+```
+#### 2.7for...in循环
+- for...in循环用来便利一个对象的全部属性
+```js
+  var o = {a:1,b:2,c:3};
+  for(var i in o){
+    console.log(0[i]);
+  }
+  //1
+  //2
+  //3
+```
+- 使用for...in提取对象属性
+```js
+  var obj = {x:1,y:2};
+  var props = [];
+  var i = 0;
+  for(props in obj);
+  props //['x','y']
+```
+- for...in循环有两个使用注意点：(待续)
+> 他遍历的对象是可以遍历（enumerable）的属性，跳过不可以遍历的属性<br>
+> 他不仅可以遍历对象自身的属性，还可以遍历继承的属性
   
-
+### 3.with语句
+- with语句格式如下
+ ```js
+   with(object){
+      statements;
+   }
+ ```
+ - with语句是操作同一个对象多个属性时，提供更舒适的写法
+ ```js
+   var o = {p1:66,p2:88}; 
+   with(o) {
+     p1 = 1;
+     p2 = 2;
+   }
+   /*等同于*/
+   o.p1 = 1;
+   o.p2 = 2;
+ ```
+ - 需要注意的是，with区块内部的变量，必须是当前变量已经存在的属性，否则会创建一个当前作用域的全局变量，这是因为with区块没有改变作用域，他的内部依然是当前作用域
 
 
 
