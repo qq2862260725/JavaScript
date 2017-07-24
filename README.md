@@ -925,6 +925,64 @@ c' //"abc"
   [1,2,3].length //3
 ```
 - JavaScript使用的一个32位数的整数，保存数组元素的个数，这意味着，数组成员最多有4294967295（2^32-1）个，也就是说length的最大长度为4294967295
+- 只要是数组，就一定有length属性，该属性是一个动态的值，等于键名中的最大整数加1
+```js
+  var arr = [1,2];
+  arr.length //2
+  arr[2] = 3;
+  arr.length //3
+  arr[999] = 1000;
+  arr.length //1000
+```
+- length的属性是可写的，如果认为设置一个小于当前成员的值，该数组的成员会自动减少到length设置的值
+```js
+   var a = ['a','b','c'];
+   a.length //3
+   a.length = 1;
+   a //['a']
+   a.length = 0; //将数组清空
+   a //[] 
+```
+- 如果设置大于当前length的整数，读取新增的位置是会返回undefined
+- 如果认为设置不合法的值会报错
+```js
+   var a = ['a','b','c'];
+   a.length //3
+   a.length = 5;
+   a[4] //undefined
+   a.length = -1; //Uncaught RangeError: Invalid array length
+```
+- 指的注意的是，数组本质上是对象的一种，所以我们可以给数组增加属性，但这并不影响数组length的值
+```js
+  var a = [];
+  a['p'] = 123;
+  a //[p:123]
+  a.lenght //0
+  a[2.11] = 'abc';
+  a //[p:123,2.11:"abc"]
+```
+- 如果数组键名是添加超出范围的数值，该键名会自动转换为字符串
+```js
+  var arr = [];
+  arr[-1] = 'a';
+  arr[Math.pow(2,32)] = 'b';
+  arr.length //0
+  a //[-1:"a", 4294967296: "b"];
+```
+#### 类似数组的对象
+- 在JavaScript中，有些对象被称为“类似数组的对象”（Array-like Object），意思是看上去很像数组，可以使用length属性，但它并不是数组，也不可以使用数组的方法
+```js
+  var obj = {
+     0: 'a',
+     1: 'b',
+     2: 'c',
+     length: 3
+  }
+  obj[0] //"a"
+  obj.length  //3
+  obj.push('d')  //TypeError: obj.push is not a function
+```
+#### in运算符在数组中的使用
 
 
 
