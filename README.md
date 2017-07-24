@@ -1053,6 +1053,7 @@ c' //"abc"
   //["0","2"]
 ```
 - 如果某个位置是undefined，遍历时就不会跳过
+```js
 var a = [1,undefined,3];
   a.forEach(function (x, i) {
     console.log(i + '. ' + x);
@@ -1068,6 +1069,7 @@ var a = [1,undefined,3];
   //2
   Object.keys(a)
   //["0","1","2"]
+  ```
 
 
 
