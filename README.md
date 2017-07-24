@@ -983,8 +983,91 @@ c' //"abc"
   obj.push('d')  //TypeError: obj.push is not a function
 ```
 #### in运算符在数组中的使用
-
-
+- 检查键名是否存在的你运算符，适用于对象和数组
+```js
+  var arr = [1,2,3];
+  2 in a //true
+  '2' in a //true
+  4 in a //false
+```
+- 如果数组某个位置是空位，in运算符返回false
+```js
+  var a = [];
+  arr[100] = 'a';
+  100 in a //true
+  1 in a //false
+```
+#### for...in循环和数组的遍历
+- for...in循环不仅仅可以遍历对象，也可以遍历数组，数组也是特殊的对象
+```js
+  var a = [1,2,3];
+  for(var i in a){
+     console.log(a[i])
+  }
+  //1
+  //2
+  //3
+```
+- for...in不仅可以遍历所有数字键，也可以遍历非数字键
+```js
+  var a = [1,2,3];
+  a.foo = 123;
+  for(var key in a){
+     console.log(key)
+  }
+  //0
+  //1
+  //2
+  //foo
+```
+#### 数组的空位
+- 当数组某个位置为空元素时，既两个都好之间没有任何值，我们称概述组存在空位
+- 数组的空位不影响数组的属性length
+- 数组的空位是可以读取的
+```js
+  var a = [1,,3];
+  a.length //3
+  a[1] //undefined
+```
+- 使用delete命令删除数组成员，会形成空位，且不会影响数组的length属性
+```js
+  var a = [1,2,3];
+  delete a[1];
+  a // [1, undefined × 1, 3]
+  a.length //3
+```
+- 数组的某个位置是空位与某个位置是undefined是不一样的，如果是空位，使用forEach方法、for...in结构，以及Object.keys方法进行遍历时，空位都会跳过
+```js
+  var a = [1,,3];
+  a.forEach(function (x, i) {
+    console.log(i + '. ' + x);
+  })
+  //0.1
+  //2.3
+  for (var i in a) {
+    console.log(i);
+  }
+  //0
+  //2
+  Object.keys(a)
+  //["0","2"]
+```
+- 如果某个位置是undefined，遍历时就不会跳过
+var a = [1,undefined,3];
+  a.forEach(function (x, i) {
+    console.log(i + '. ' + x);
+  })
+  //0.1
+  //2.undefined
+  //2.3
+  for (var i in a) {
+    console.log(i);
+  }
+  //0
+  //1
+  //2
+  Object.keys(a)
+  //["0","1","2"]
 
 
 
