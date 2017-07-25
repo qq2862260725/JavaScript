@@ -1112,7 +1112,7 @@ var a = [1,undefined,3];
      return x + y;
   }
 ```
-### 函数的重复声明
+#### 函数的重复声明
 - 如果一个函数被声明多次，后面的声明会覆盖前面的声明
 ```js
   function f(){
@@ -1124,7 +1124,7 @@ var a = [1,undefined,3];
   }
   f() //2
 ```
-### 圆括号运算符，return语句和递归
+#### 圆括号运算符，return语句和递归
 - 调用函数时，要使用圆括号运算符，圆括号之中可以加入参数
 ```js
   function add(x,y){
@@ -1152,6 +1152,118 @@ var a = [1,undefined,3];
   }
   /*讲一个函数赋值给一个变量*/
   var operator  = add
+  /*将函数作为参数和返回值*/
+  function a(op) {
+    return op;
+  }
+  a(add(1,1)) //2
+```
+#### 函数名的提升
+- JavaScript引擎将函数名视同变量名，所以采用function命令声明函数时，整个函数会像变量声明一样，被提升到变量头部
+```js
+  f();
+  function f() {}
+```
+- 表面上，上面的代码在声明之前就调用了函数f，但实际上，由于变量提升，函数f被提升到了代码头部，也就是说，函数在被条用之前就已经声明了
+- 如果使用赋值语句声明函数，JavaScript就会报错
+```js
+  f();
+  var f = function() {};
+  // TypeError: undefined is not a function
+  /*上面的代码等同于*/
+  var f;
+  f();
+  function f() {};
+```
+- 如果同时采用function命令和赋值语句声明同一个函数，最后总是采用赋值语句定义
+```js
+  var f = function() {
+    console.log(1);
+  }
+  function f(){
+    console.log(2)
+  }
+  f() //1
+```
+#### 不能再条件语句中声明函数
+- 根据ECMAScript的规范，不得在非函数的代码块中声明函数，最常见的就是if和try，不合法示例
+```js
+  if(foo) {
+    function x(){}
+  }
+  
+  try{
+    functio x(){};
+  }catch(e){
+    console.log(e);
+  }
+```
+- 上面的代码分别在if和try语句中声明了两个函数，按照语言规范是不合法的，但实际上浏览器不会报错
+- 由于函数名的提升所以在条件语句中声明的函数，可能是无效的，这也是非常容易出错的地方
+```js
+  if(false) {
+    function f(){};
+  }
+  f(); //不会报错
+```
+- 要达到在条件语句中定义函数的目的，只有使用函数表达式
+```js
+  if(false) {
+    var f = function(){};
+  }
+  f(); //undefined
+```
+### 2.函数的属性和方法
+#### 2.1name属性
+- name属性返回紧跟在function关键字之后的那个函数名
+```js
+  function f1() {};
+  f1.name //'f1'
+  
+  var f2 = function(){};
+  f2.name //''
+  
+  var f3 = function loop() {};
+  f3.name //'loop'
+```
+#### 2.2length的属性
+- length属性返回函数预期传入参数的个数，即函数定义之中的参数个数
+```js
+  function add(a,b){
+    return a+b
+  }
+  add.length //2
+```
+- 上面的代码定义了函数add，它的length属性就是定义时的参数个数，不管调用时输入多少个参数，length的属性始终是2
+- length提供一种机制，判断定义时调用时参数的差异，以便实现面向对象编程的"方法重载"
+
+#### 2.3toString()
+- 函数toString()返回函数的源代码
+```js
+  function f(){
+    a();
+    b();
+    c();
+  }
+  f.toString()
+  //function f(){
+  //  a();
+  //  b();
+  //  c();
+  //}
+```
+- 函数内部注释也可以返回
+```js
+  function f() {/*
+    这是一个
+    多行注释
+  */}
+
+  f.toString()
+  // "function f(){/*
+  //   这是一个
+  //   多行注释
+  // */}"
 ```
 
 
