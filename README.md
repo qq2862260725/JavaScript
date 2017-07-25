@@ -1099,6 +1099,60 @@ var a = [1,undefined,3];
   print() //function
 ```
 - 上述代码在函数表达式中，加入了函数名x，这个x只在函数体内部可以使用，指代函数表达式本身，其他地方都不可以用；这种写法有两个优点：一可以在函数体内部调用自身，二是方便排错
+### Function构造函数
+- Function构造函数接受三个参数，除了最后一个参数是add函数的"函数体"，其他参数都是add函数的参数，其他参数都是add函数的参数
+```js
+  var add = new Function(
+     'x',
+     'y',
+     'return x + y'
+  );
+  /*等同于*/
+  function add(x,y){
+     return x + y;
+  }
+```
+### 函数的重复声明
+- 如果一个函数被声明多次，后面的声明会覆盖前面的声明
+```js
+  function f(){
+    console.log(1)
+  }
+  f() //1
+  function f(){
+    console.log(2)
+  }
+  f() //2
+```
+### 圆括号运算符，return语句和递归
+- 调用函数时，要使用圆括号运算符，圆括号之中可以加入参数
+```js
+  function add(x,y){
+    return x + y;
+  }
+  add(1,3) //4
+```
+- 函数体内部的return表示返回。JavaScript引擎遇到return语句时，就会直接返回return后面的表达式，后面即便还有语句也不会执行到，也就是说return后面的表达式，就是函数返回的值，return语句不是必须的，如果没有的话，该函数就不会返回任何值，或者说返回undefined
+
+- 函数可以调用自身，这就是递归（recursion），斐波那契数列代码
+```js
+  function fib(num) {
+    if(num == 0) return 0;
+    if(num == 1) return 1;
+    return fib(nmu - 2) + fib(num - 1)
+  }
+  fib(6) //8
+```
+#### 第一等公民
+- JavaScript将函数看成一种值，与其他值（数字，字符串，布尔值..）地位相同。凡是可以使用值的地方，皆可以使用函数
+- 由于函数与其他类型的地位相等，所以在JavaScript中有称函数为一等公民
+```js
+  function add(x,y) {
+    return x + y;
+  }
+  /*讲一个函数赋值给一个变量*/
+  var operator  = add
+```
 
 
 
