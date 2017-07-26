@@ -1332,7 +1332,154 @@ var a = [1,undefined,3];
    }
   }
 ```
+#### 3.3函数本身的作用域
+- 函数本身也是一个值，也有自己的作用域，它的作用域与变量一样，就是生命所在的作用域，与其运行时所在的作用域无关
+```js
+  var a = 1;
+  var x = function(){
+    console.log(a);
+  }
+  
+  function f(){
+    var a = 2;
+    x();
+  }
+  
+  f() //1
+```
+- 函数执行时所在的作用域是定义时的作用域，而不是调用时所在的作用域
+- 函数体内部声明的函数，作用域绑定函数内部
+```js
+  function foo(){
+    var x = 1;
+    function bar(){
+      console.log(x);
+    }
+    return bar;
+  }
+  var x = 2;
+  var f = foo();
+  f() //1
+```
+### 参数
+#### 4.1概述
+- 函数运行时，有时候需要外部提供数据，这种外部数据成为参数
+```js
+  function square(x) {
+    return x*x;
+  }
+  square(66) //36
+```
 
+#### 4.2参数的省略
+- 函数的参数不是必须的，JavaScript允许省略参数
+```js
+  function(a,b){
+    return a;
+  }
+  f(1,2,3) //1
+  f(1) //1
+  f() //undefined
+  f.length //2
+```
+- 被省略的参数就会变成undefined，需要注意的是函数的length属性与实际传入的参数个数无关，只会反映函数预期传入的参数个数
+- 特殊情况：没有办法只省略靠前的参数，而保留靠后的参数，如果一定要省略靠前的参数，只有显示传入undefined
+```js
+  function f(a,b){
+    return a;
+  }
+  f(,2) // SyntaxError: Unexpected token ,(…)
+  f(undefined, 1) // undefined
+```
+#### 4.3默认值
+```js
+  function f(a){
+    a = a || 1;
+    return a;
+  }
+  f('') //1
+  f(0) //1
+  f(3) //3
+```
+- 上面的写法会对a进行一次不二运算，只有为true时才会返回a，可是除了undefined以外，0、空字符串，null等值的布尔值也是false，也就是说，在上面的函数中，不能让a等于0或空字符串，否则在有参数的情况下，也会返回默认值
+- 为了避免上面的问题，使用下面的办法来解决
+```js
+  function f(a) {
+     (a !== undefined && a !== null) ? a = a : a = 1;
+     return a;
+  ]
+  f() //1
+  f('') //""
+  f(0) //0
+```
+#### 4.4传递方式
+- 函数的参数如果是原始值（数值，字符串，布尔值），传递方式是传值传递（passes by value），这意味着，在函数体内修改参数的值，不会影响到函数外部
+```js
+  var p = 2;
+  functio f(p) {
+    p = 3;
+  }
+  f(p);
+  p //3
+```
+- 如果函数的参数是复合型的值（数组、对象、其他函数），传递方式是传址传递（pass by reference）。也就是说，传入函数的原始值的地址，在函数内部修改函数的参数值，会影响到原始值
+```js
+  var a = [1,2,3];
+  function f(e){
+    e[1] = 99;
+  }
+  f(a);
+  a // [1,99,3]
+```
+- 如果函数内部修改的不是参数对象的某个属性，而是替换掉整个参数，这是并不会影响到原始值
+```js
+  var arr = [1,2,3];
+  function f(e){
+    e = [2,3,4];
+  }
+  f(arr);
+  arr //[1,2,3]
+```
+- 上面的arr之所以不会受到影响，是因为形式参数e与实践参数arr存在赋值关系
+```js
+  /*函数内部*/
+  e = arr
+```
+- 上面的代码，对e的修改都会反映到arr的身上，但是对e赋予一个新值，就等于切断了e与arr的联系
+- 在某些特殊的情况下，也可以对原始变量进行修改，达到传址传递的效果，可以将原始值写成全局对象的属性
+```js
+  var a = 1;
+  function f(p){
+    window[p] = 2;
+  }
+  f('a');
+  a //2
+```
+#### 4.5同名参数
+- 如果有同名参数，则取最后出现的那个值
+```js
+  function f(a,a){
+    console.log(a);
+  }
+  f(1,7) //7
+```
+- 如果后面没值或被省略，也是以第二个为准
+```js
+  function f(a,a){
+    console.log(a);
+  }
+  f(1) //undefined
+```
+- 调用f函数的时候，没有第二个参数，a的取值就变成了undefined，如果这时要获取第一个参数的值，可以使用arguments对象获取
+```js
+   function f(){
+     console.log(arguments[0])
+   }
+   f(1) //1
+```
+#### 4.6arguments对象
+- 由于JavaScript允许有不定数目的参数，所以我们需要采取一定机制来读取所有参数，这便是arguments
+- arguments对象包含了函数运行时的所有参数，arguments[0]就是第一个参数，arguments[1]就是第二个参数，以此类推，这个对象只有在函数体
 
 
 
