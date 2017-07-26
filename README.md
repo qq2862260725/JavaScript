@@ -1265,6 +1265,73 @@ var a = [1,undefined,3];
   //   多行注释
   // */}"
 ```
+- 利用这一点可以变相实现多行字符串
+```js
+  var multiline = function(fn){
+    var arr = fn.toString().split('\n');
+    return arr.slice(1,arr.length - 1).join('\n');
+  };
+  
+  function f(){/*
+      这是一个
+      多行注释
+  */}
+  multiline(f)
+  //"这是一个
+  //多行注释"
+```
+
+### 3.函数的定义域
+#### 3.1定义
+- 作用域是指变量存在的范围。JavaScript有两种作用域：一种是全局作用域，变量在整个程序中一直存在，所有地方可以读取，另一种是函数作用域，变量只在函数内部存在
+- 在函数外部声明的变量就是全局变量（globa variable）；它可以在函数内部读取
+```js
+  var a = 1;
+  function f(){
+    console.log(a);
+  }
+  f() //1
+```
+- 在函数内部定义的变量，外部无法读取，成为局部变量（local variable）
+```js
+  function f(){
+    var a = 1;
+  }
+  a //ReferenceError: v is not defined
+```
+- 函数内部定义的变量，会在该作用域内覆盖同名的全局变量
+```js
+  var a = 1;
+  function f(){
+    var a = 2;
+    console.log(a);
+  }
+  f() //2
+  a //1
+```
+- 对于var命令，局部变量只能在函数内部声明，其他区块声明的，一律为全局变量
+```js
+  if(true) {
+    var a = 5;
+  }
+  console.log(a); //5
+```
+#### 3.2函数内部的变量提升
+- 与全局作用域一样，函数作用域也会产生"变量提升"的现象，var命令声明的变量，不管在什么位置，变量声明会被提升到函数体的头部
+```js
+  function foo(x){
+    if(x > 100){
+      var tmp = x -100;
+    }
+  }
+  /*等同于*/
+  function foo(x){
+   var tmp;
+   if(x > 100) {
+     tmp = x - 100;
+   }
+  }
+```
 
 
 
