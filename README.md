@@ -1480,9 +1480,46 @@ var a = [1,undefined,3];
 #### 4.6arguments对象
 - 由于JavaScript允许有不定数目的参数，所以我们需要采取一定机制来读取所有参数，这便是arguments
 - arguments对象包含了函数运行时的所有参数，arguments[0]就是第一个参数，arguments[1]就是第二个参数，以此类推，这个对象只有在函数体
-
-
-
+```js
+  var f = function(one){
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+    console.log(arguments[2]);
+  }
+  f(1,2,3)
+  //1
+  //2
+  //3
+```
+- arguments除了读取参数，汉可以为参数赋值（严格模式下不允许这中做法）
+```js
+  var f = function(a,b){
+    arguments[0] = 11;
+    arguments[1] = 22;
+    return a + b;
+  }
+  f(1,1) //33
+```
+- 通过arguments对象的属性，可以判断调用时到底带了几个参数
+```js
+  function f(){
+    return arguments.length
+  }
+  f(1,2,3) //3
+  f() //0
+```
+### 5.函数的其他知识点
+#### 5.1闭包
+- 闭包是JavaScript语言的一个难点，也是它的特色；要了解闭包，首先必须理解变量的作用域，理解全局变量和局部变量
+- 出于种种原因，我们需要得到函数内部的局部变量，正常情况下是办不到的，只有变通方法才能获取，那就是在函数内部再次定义一个函数
+```js
+  function f1(){
+    var n = 999;
+    function f2(){
+      console.log(n)
+    }
+  }
+```
 
 
 
