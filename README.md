@@ -1518,7 +1518,70 @@ var a = [1,undefined,3];
     function f2(){
       console.log(n)
     }
+    return f2;
   }
+  var result = f1();
+  result(); //999
+```
+- 上面的代码中函数f1返回了函数f2的值，由于f2可以读取f1的内部变量，所以就可以在外部获取f1的内部变量
+- 闭包可以简单的理解为定义在一个函数内部的函数，闭包的最大特点就是可以记住他的诞生环境，本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁
+- 闭包的最大用处有两个：一是可以读取函数的内部变量，另一个就是让这些变量始终保存在内存中，及闭包可以使它的诞生环境一直存在
+```js
+  function remember(e){
+    return function(){
+      return e++;
+    }
+  }
+  var add = remember(5);
+  add() //5
+  add() //6
+  add() //7
+```
+#### 5.2立即调用函数表达式（IIFE）
+- 在JavaScript中()是一个运算符，跟在函数名之后表示调用该函数，比如add()
+- 有时我们在自定义函数之后，立即调用该函数，这是不能在之后加圆括号，这会产生语法错误
+```js
+  function(){...}();
+  // SyntaxError: Unexpected token (
+```
+- 上面代码的错误原因是，function这个关键字既可以当做语句，也可以作为表达式
+```js
+  //语句
+  function f(){}
+  //表达式
+  var f = function f() {}
+```
+- 为了避免解析上的歧义，JavaScript引擎规定，如果function关键字出现在行首，一律解释为语句，JavaScript引擎看到行首是function关键字之后，认为这一段是函数定义，不该以圆括号结尾，所以报错
+- 解决办法就是不让function出现在行首，让引擎将其理解呈一个表达式，最简单的就是，将其放在一个圆括号内
+```js
+  (function(){....}());
+  //or
+  (function(){})();
+```
+- 上面两种写法最后面的分后都是必须的，如果省略分号连着写两个IIFE函数，可能会报错
+```js
+   // 报错
+  (function(){ /* code */ }())
+  (function(){ /* code */ }())
+```
+- 上面两行代码没有分号，JavaScript会将它们连载一起解释，将第二行解释为第一行的参数
+
+### 6.eval命令
+- eval命令的作用是将字符串当做语句来执行
+```js
+  eval('var a = 1');
+  a //1
+```
+- 放在eval中的字符串应该有独自存在的意义，不能用来与eval以外的命令配合使用
+```js
+  eval('return;')
+  //Uncaught SyntaxError: Illegal return statement
+```
+- eval没有自己的作用域，都在当前作用域执行，因此可能会修改当前作用域变量的值，造成安全问题
+```js
+  var a = 1;
+  eval('a = 2');
+  a //2
 ```
 
 
