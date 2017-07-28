@@ -323,18 +323,19 @@ label:
   typeof [] // "object"
   typeof null //"object"
   ```
-  - 数组是特殊的对象，null也属于object（历史遗留问题），null本质上是类似于undefined的特殊值；
-  - 区分数组（array）和对象（object）；
-  ```js
+- 数组是特殊的对象，null也属于object（历史遗留问题），null本质上是类似于undefined的特殊值；
+- 区分数组（array）和对象（object）；
+```js
     var o = {};
     var a = [];
     o instanceof Array //false
     a instanceof Array //true
-  ```
-  ### 3.null和undefined
-  #### 3.1概述
+```
+  ###  3.null和undefined
+  ####  3.1概述
   - null和undefined都表示‘没有’，含义非常相似
   - 在if语句中，null和undefined都会被自动转化为false，相等运算符（==），两者相等
+  
   ```js 
    null == undefined; //true
    Number(null); //0
