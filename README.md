@@ -1650,50 +1650,22 @@ var a = [1,undefined,3];
   typeof(now + 1) //"string"
   typeof(now - 1) //"number"
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 2.算术运算符
+- JavaScript提供9中运算符
+> 加法运算符（Addition）：x + y <br>
+> 减法运算符（Subtraction）：x - y<br>
+> 乘法运算符（Multiplication）：x * y<br>
+> 除法运算符（Division）：x / y<br>
+> 余数运算符（Remainder）：x % y<br>
+> 自增运算符（Increment）：x++或++x<br>
+> 自减运算符（Decrement）：x--或--x<br>
+> 数值运算符（Convert to number）： +x<br>
+> 负值运算符（Negate）: -x<br>
+#### 2.1余数运算符
+- 余数运算符（%）犯浑前一个运算子背后以个运算子除后，得到的余数
+```js
+  12 % 5 //2
+```
 
 
 
