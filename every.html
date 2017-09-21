@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript Learning</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+	<p>点击检查是否所有的数值都大于18</p>
+	<button onclick="checkAll();">Click</button>
+</body>
+<script>
+	var ages = [32,33,16,40];
+	function term(e){
+		return e >= 18;
+	}
+
+	function checkAll(){
+		var a = ages.every(term);
+		console.log(a);
+	}
+</script>
+</html>

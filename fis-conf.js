@@ -69,7 +69,7 @@ fis.media('online')
   });
 
 /**
- * 本机测试版本
+ * 本地测试版本
  */
 fis.media('debug')
   .match(/\.(js|css|html|php)$/i, {

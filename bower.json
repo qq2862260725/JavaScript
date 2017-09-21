@@ -1,6 +1,6 @@
 {
-  "name": "lijt",
-  "description": "lijt",
+  "name": "Javascript",
+  "description": "The Elegance of Javascript",
   "dependencies": {
     "jquery": "^3.1.1",
     "vue": "^2.3.4",

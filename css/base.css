@@ -12,7 +12,42 @@ ul, li {
 a {
 	text-decoration: none;
 }
+textarea:focus {
+	outline: 0;
+}
 .cover {
 	height: 100%;
 	width: 100%;
+}
+input:focus {
+	outline: 0;
+}
+html,body {
+	height: 100%;
+	width: 100%;
+	background-color: #eee;
+}
+.fg {
+	float: right;
+}
+.fl {
+	float: left;
+}
+.underline {
+	text-decoration: underline;
+}
+.strong {
+	font-weight: bold;
+}
+.red {
+	color: #FF0004;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: inline;
+}
+.center {
+	text-align: center;
 }
