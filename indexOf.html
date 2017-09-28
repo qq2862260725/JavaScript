@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>indexOF</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	
+</body>
+<script>
+	var i = 'https://www.duitang.com/search/?kw=%E8%8A%B1%E6%9C%B5&type=feed&type2=feed2';
+	function slice(q){
+		var a = q.indexOf('?') + 1;
+		var b = q.slice(a);
+		var c = b.length;
+		loop(b);
+	}
+	function loop(p){
+		var d = p.indexOf('&');
+		var e = p.slice(0,d-1);
+		console.log(e);
+		var f = e.indexOf('=');
+		var g = e.slice(0,f);
+		var h = e.slice(f+1);
+		console.log('g',g);
+		console.log('h',h);
+		var arr = {
+			g:h,
+		};
+		console.log(arr);
+	}
+	slice(i);
+</script>
+</html>
