@@ -1741,6 +1741,28 @@ var a = [1,undefined,3];
   //等同于 5 > Number('4')
   //即 5 > 4
 ```
+#### 4.1字符串比较
+```js
+  'cat' > 'dog' //false
+  'cat' > 'catalog' //false
+  'cat' > 'Cat' //true
+  /*小写的c的 Unicode 码点（99）大于大写的C的 Unicode 码点（67），所以返回true*/
+  '大' > '小' //false
+  /*汉字也是根基Unicode码来比较的，“大”的 Unicode 码点是22823，“小”是23567*/
+```
+- javascript引擎首先首字母的Unicode码，如果相等在比较第二个，一次类推
+#### 4.2非字符串的比较
+- 原始类型的值
+> 两个原始类型相比较，除了相等运算符（==）和严格相等运算符，其他运算符斗仙转化为数值
+```js
+  5 > '4' //true
+  /*等同于*/
+  5 > Number('4');
+  /*即5 > 4*/
+  true > false //true
+  2 > true //true
+```
+> NaN与任何值比较都会返回false
 
 
 
