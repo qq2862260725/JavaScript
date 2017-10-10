@@ -1763,6 +1763,12 @@ var a = [1,undefined,3];
   2 > true //true
 ```
 > NaN与任何值比较都会返回false
+> 对象
+```js
+  var x = [2];
+  x > '11' //true
+  //等同于[2].valueOf().toString() > '11';
+```
 
 
 
