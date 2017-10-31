@@ -177,6 +177,7 @@ switch(2+2){
     default:
        console.log('x没有发生类型转化');
   }
+  // x没有发生类型转换
 ```
 #### 6.4三元运算符?:
 - 三元运算符结构:(condition)?one:two,如果condition为true，返回one，否则返回two；
