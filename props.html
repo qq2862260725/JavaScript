@@ -5,16 +5,19 @@
 	<title>JavaScript Learning path</title>
 	<link href="img/icon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<a href="javascript: void(f())">文字</a>
+	
 </body>
-<script src="js/index.js"></script>
 <script>
-	function f(){
-		console.log('Error!')
-		return false;
+	var obj = {
+		x:1,
+		y:2
 	}
+	var props = [];
+	console.log(props);
+	var i = 0;
+	for (props[i++] in obj);
+	console.log(props);
 </script>
 </html>

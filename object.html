@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Object</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+
+</body>
+<script>
+	Object.print = function(o){ console.log(o) };
+	var a = {a:1,b:2,c:3};
+	Object.print(a);
+	Object.prototype.print = function(){ console.log(this) };
+	var b = {b:311203000111};
+	b.print();
+</script>
+</html>

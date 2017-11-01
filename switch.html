@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Switch</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+	<button id="one">Click</button>
+</body>
+<script>
+	var button = document.getElementById('one');
+	var a = 2;
+	button.onclick = function(){
+		switch(a) {
+			case 1:
+				alert(1);
+				break;
+			case 2:
+				alert(2);
+				break;
+			case 3:
+				alert(3);
+				break;
+			default:
+				alert('none');
+		}
+	}
+</script>
+</html>

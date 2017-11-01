@@ -11,27 +11,24 @@
 	
 </body>
 <script>
+	var json = {};
 	var i = 'https://www.duitang.com/search/?kw=%E8%8A%B1%E6%9C%B5&type=feed&type2=feed2';
 	function slice(q){
 		var a = q.indexOf('?') + 1;
 		var b = q.slice(a);
 		var c = b.length;
+		console.log(b);
 		loop(b);
 	}
 	function loop(p){
 		var d = p.indexOf('&');
 		var e = p.slice(0,d-1);
-		console.log(e);
 		var f = e.indexOf('=');
 		var g = e.slice(0,f);
 		var h = e.slice(f+1);
-		console.log('g',g);
-		console.log('h',h);
-		var arr = {
-			g:h,
-		};
-		console.log(arr);
+		json[g] = h;
 	}
 	slice(i);
+	console.log(json);
 </script>
 </html>
