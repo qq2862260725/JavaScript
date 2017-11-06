@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Map</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+
+</body>
+<script>
+	var a = ['a','b','c'];
+	var b = a.map(function(i){
+		return i.toUpperCase();
+	})
+	console.log(b);
+	function demo(i){
+		return i.toUpperCase();
+	};
+	var c = 'abc';
+	var d = [].map.call(c,demo);
+	var e = d.join('');
+	console.log(e);
+	console.log(typeof(e));
+
+	var arr = ['a','b','c'];
+	var newArray = [1,2].map(function(e){
+		return this[e];
+	},arr);
+	console.log(newArray);
+</script>
+</html>
