@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Map</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<style>
+	table {
+		height: auto;
+		width: 200px;
+		border-collapse: collapse;
+		border: 1px solid blue;
+	}
+	table tr {
+		height: 30px;
+		width: 100%;
+		border: 1px solid blue;
+	}
+	table tr td {
+		height: 100%;
+		text-align: center;
+		border: 1px solid blue;
+	}
+	table tr td input {
+		height: 100%;
+		width: 100%;
+		display: block;
+	}
+</style>
+<body>
+	<table id="first">
+		<tr>
+			<td>1</td>
+			<td class="one">2</td>
+			<td>3</td>
+			<td class="one">4</td>
+		</tr>
+		<tr>
+			<td class="one">5</td>
+			<td>6</td>
+			<td class="one">7</td>
+			<td>8</td>
+		</tr>
+	</table>
+</body>
+<script>
+	var input = document.createElement("input"); 
+    input.type = "text" ; 
+    var currentCell ; 
+    function editCell(event) { 
+        if(event == null) { 
+            currentCell = window.event.srcElement; 
+        } else { 
+            currentCell = event.target; 
+        } 
+        if(currentCell.className == "one"){ 
+            input.value = currentCell.innerHTML; 
+            input.onblur = last; 
+            input.onclick = last; 
+            currentCell.innerHTML = ""; 
+            currentCell.appendChild(input); 
+            input.focus(); 
+        } 
+    } 
+    function last() { 
+        currentCell.innerHTML = input.value; 
+    } 
+    document.getElementById("first").onclick = editCell; 
+</script>
+</html>
