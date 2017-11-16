@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Slice And Splice</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	/*slice不改变原数组*/
+	var a = [1,2,3];
+	var b = a.slice(0,1);
+	console.log(a,b);
+
+	/*splice改变原来数组*/
+	var c = [1,2,3];
+	var d = c.splice(0,1);
+	console.log(c,d);
+	/*splice可以替换原数组被删除的元素*/
+	var e = [1,2,3]
+	var f = e.splice(0,1,'a','b','c');
+	console.log(e,f);
+</script>
+</html>
