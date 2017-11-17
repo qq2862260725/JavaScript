@@ -1,0 +1,2 @@
+改变原来的数组：push()、pop()、
+不改变原来的数组：valueOf()、toString()、jion()、

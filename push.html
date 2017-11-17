@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Push</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+
+</body>
+<script>
+	/*push用于数组*/
+	var a = [1,2,3];
+	var b= [4,5,6];
+	Array.prototype.push.apply(a,b);
+	console.log(a);
+	var c = [1,2,3];
+	var d = [4,5,6];
+	c.push.apply(c,d);
+	console.log(c);
+	var e = [1,2,3];
+	e.push(4,5,6);
+	console.log(e);
+
+	/*push由于对象*/
+	var f = {a:1};
+	[].push.call(f,2);
+	console.log(f);
+	[].push.call(f,[2,3]);
+	console.log(f,f[1]);
+</script>
+</html>
