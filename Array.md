@@ -1,0 +1,2 @@
+- 改变原数组：push()、pop()
+- 不改变原数组: valueOf()¡¢toString()、jion()
