@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>forEach</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<style>
+	#demo {
+		height: auto;
+		width: 200px;
+	}
+	li {
+		height: auto;
+		width: 100%;
+		margin-top: 3px;
+		cursor: pointer;
+		color: #ffffff;
+		font-size: 20px;
+		line-height: 30px;
+		text-align: center;
+		transition: .4s;
+		background-color: rgba(0,0,0,0.5);
+	}
+	li div {
+		height: 40px;
+		width: 100%;
+		background-color: #333333;
+	}
+	.active {
+		background-color: rgba(107,107,107,0.5);
+	}
+</style>
+<body>
+	<ul id="demo">
+		<li class="active">1
+			<div class="one hide">
+				111
+			</div>
+		</li>
+		<li>2
+			<div class="one hide">
+				222
+			</div>
+		</li>
+		<li>3
+			<div class="one hide">
+				333
+			</div>
+		</li>
+		<li>4
+			<div class="one hide">
+				444
+			</div>
+		</li>
+	</ul>
+</body>
+<script>
+	var li = document.getElementsByTagName('li');
+	var one = document.querySelectorAll('.one');
+	var liA = Array.prototype.slice.call(li);
+	console.log(one);
+
+	liA.forEach(function(elem,index) {
+	 	elem.onclick = function() {
+	 		console.log(index);
+	 		if (elem.className == 'active') {
+	 			if (one[index].className == 'show') {
+	 				one[index].className = 'hide';
+	 			} else {
+	 				one[index].className = 'show';
+	 			}
+	 		} else {
+	 			for (var i = 0; i < liA.length; i++) {
+		 			liA[i].className = '';
+		 			one[i].className = 'hide';
+		 		}
+		 		elem.className = 'active';
+		 		one[index].className = 'show';
+	 		}
+	 	}
+	});
+</script>
+</html>

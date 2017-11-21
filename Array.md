@@ -1,2 +1,2 @@
-- 改变原数组：push()、pop()
-- 不改变原数组: valueOf()¡¢toString()、jion()
+- 改变原数组：push()、pop()、shift()、unshift()、reverse()、splice()、sort()、
+- 不改变原数组: valueOf()、toString()、jion()、concat()、slice()、map()、
