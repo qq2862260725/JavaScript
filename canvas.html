@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Canvas</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<style>
+	body {
+        background-color: black;
+    }
+	#one {
+        height: 100px;
+        width: auto;
+    }
+</style>
+<body>
+	<canvas id="one"></canvas>
+</body>
+<script>
+    var a = 0;
+    var canvas = document.getElementById("one");
+    var context = canvas.getContext("2d");
+    context.strokeStyle = "#dedf66";
+    function go(){
+        if (a < 2) {
+            a += 0.01;     
+            context.beginPath();       
+            context.arc(100, 100, 50, 0, a*Math.PI, false);
+            context.stroke();
+            setTimeout(go,20);
+        } else {
+            console.log('success');
+            return;
+        }
+    }
+    go();
+</script>
+</html>

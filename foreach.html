@@ -60,11 +60,9 @@
 	var li = document.getElementsByTagName('li');
 	var one = document.querySelectorAll('.one');
 	var liA = Array.prototype.slice.call(li);
-	console.log(one);
 
 	liA.forEach(function(elem,index) {
 	 	elem.onclick = function() {
-	 		console.log(index);
 	 		if (elem.className == 'active') {
 	 			if (one[index].className == 'show') {
 	 				one[index].className = 'hide';
