@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Display Series</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+	
+</body>
+<script>
+	var a = [];
+	a[0] = 1;
+	a[1] = 1;
+	var b = a.length;
+	function go(n) {
+		var t1 = new Date();
+		console.log(t1);
+		for (var i = n-1; i >= a.length; i--) {
+   			a[b] = a[b-1] + a[b-2];
+   			b = a.length;
+   			go(n);
+   			return a[n-1];
+		}
+		console.log(a);
+		console.log(a[n-1]);
+		var t2 = new Date();
+		console.log('29:',t2-t1);
+	}
+	// var a = [];
+	// a[0] = 1;
+	// a[1] = 1;
+	// var b = a.length;
+	// function go(n) {
+	// 	// var t1 = new Date();
+	// 	// console.log(t1);
+	// 	// for () {
+ //  //  			a[a.length] = a[a.length-1] + a[a.length-2];
+ //  //  			// go(n);
+	// 	// }
+	// 	while (n > 1) {
+	// 		n--;
+ //   			a[a.length] = a[a.length-1] + a[a.length-2];
+	// 	}
+	// 	return a[a.length - 1];
+	// 	// console.log(a);
+	// 	// console.log(a[n-1]);
+	// 	// var t2 = new Date();
+	// 	// console.log('29:',t2-t1);
+	// }
+	// console.log(go(100))
+</script>
+</html>

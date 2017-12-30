@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Display Series</title>
+	<link href="img/icon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body>
+	
+</body>
+<script>
+	var a = [];
+	a[0] = 1;
+	a[1] = 1;
+	var b = a.length;
+	function go(n) {
+		var i = n - 1;
+		if (i >= b) {
+			a[b] = a[b-1] + a[b-2];
+   			b = a.length;
+   			i --;
+   			console.log(a[b-1]);
+   		    return go(n);
+		} else {
+			console.log(a[b-1]);
+		}
+	}
+</script>
+</html>
