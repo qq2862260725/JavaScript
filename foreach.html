@@ -79,5 +79,18 @@
 	 		}
 	 	}
 	});
+
+
+	/*forEach 可以接受第二个参数*/
+	var out = [];
+	var a = [1,2,3];
+	// console.log(a);
+	function push(ele, index ,arr) {
+		this.push(ele*ele);
+	}
+	a.forEach(push,out);
+	// console.log(out);
+
+
 </script>
 </html>
