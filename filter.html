@@ -18,6 +18,19 @@
 		return (elem > 3);
 	}
 	var b = a.filter(match);
-	// console.log(b);
+	console.log(b,a);
+
+	/*filter 可以接受第二个参数*/
+	var arr = [2, 8, 3, 4, 1, 3, 2, 9];
+	var obj = function(){
+		this.MAX = 3;
+	}
+	var myFilter = function(item) {
+		if (item > this.MAX) {
+			return true;
+		}
+	}
+	var brr = arr.filter(myFilter, new obj());
+	console.log(brr);
 </script>
 </html>
